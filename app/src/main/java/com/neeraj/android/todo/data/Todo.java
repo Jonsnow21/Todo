@@ -1,12 +1,15 @@
 package com.neeraj.android.todo.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import io.realm.RealmObject;
 
 /**
  * Created by neeraj on 19/2/17.
  */
 
-public class Todo extends RealmObject {
+public class Todo extends RealmObject implements Parcelable {
 
     private String title;
     private String content;
@@ -21,6 +24,25 @@ public class Todo extends RealmObject {
         this.dueDate = date;
         this.priority = priority;
     }
+
+    protected Todo(Parcel in) {
+        title = in.readString();
+        content = in.readString();
+        dueDate = in.readString();
+        priority = in.readInt();
+    }
+
+    public static final Creator<Todo> CREATOR = new Creator<Todo>() {
+        @Override
+        public Todo createFromParcel(Parcel in) {
+            return new Todo(in);
+        }
+
+        @Override
+        public Todo[] newArray(int size) {
+            return new Todo[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -54,4 +76,16 @@ public class Todo extends RealmObject {
         this.priority = priority;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeString(content);
+        parcel.writeString(dueDate);
+        parcel.writeInt(priority);
+    }
 }

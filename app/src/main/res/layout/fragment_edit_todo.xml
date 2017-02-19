@@ -1,0 +1,84 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.neeraj.android.todo.fragments.EditTodoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="8dp">
+
+        <EditText
+            android:id="@+id/todo_title_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            android:maxLines="2"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:background="@android:color/transparent"
+            android:padding="8dp"/>
+
+        <EditText
+            android:id="@+id/todo_content_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
+            android:hint="@string/note"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:background="@android:color/transparent"
+            android:padding="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/priority"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/todo_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/due_date"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <DatePicker
+                android:id="@+id/todo_date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

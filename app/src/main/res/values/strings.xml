@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Todo</string>
     <string name="no_todo">You haven\'t added any Todo \n <b>Click the + button to add a new Todo</b></string>
+
+    <string name="due_date">Due Date</string>
+    <string name="priority">Priority</string>
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+    <string name="todo_cannot_be_empty">Todo cannot be empty!</string>
+
+    <string-array name="priorities">
+        <item name="low">Low</item>
+        <item name="medium">Medium</item>
+        <item name="high">High</item>
+    </string-array>
 </resources>

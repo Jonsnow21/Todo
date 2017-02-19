@@ -88,9 +88,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     }
 
     public interface TodoListener {
-        void updateTodo(Todo todo, @Nullable Integer index);
 
-        void openTodo(Todo todo, int index);
+        void openTodo(Todo todo, int position);
 
         void todoDeleted(List<Todo> todoList);
     }
