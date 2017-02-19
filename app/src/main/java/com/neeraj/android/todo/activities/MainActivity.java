@@ -16,6 +16,7 @@ import com.neeraj.android.todo.adapters.TodoAdapter;
 import com.neeraj.android.todo.data.Todo;
 import com.neeraj.android.todo.utils.ItemOffsetDecoration;
 
+import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
         setSupportActionBar(toolbar);
 
         realm = Realm.getDefaultInstance();
-        todoList = realm.where(Todo.class).findAll();
+        todoList = realm.where(Todo.class).findAllSorted("createdTime");
         checkIfNoTodo();
 
         addTodo.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
     @Override
     protected void onResume() {
         super.onResume();
-        todoList = realm.where(Todo.class).findAll();
+        todoList = realm.where(Todo.class).findAllSorted("createdTime");
         if (todoAdapter != null) {
             todoAdapter.notifyDataSetChanged();
         }

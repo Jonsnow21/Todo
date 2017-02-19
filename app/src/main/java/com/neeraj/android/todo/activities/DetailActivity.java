@@ -65,8 +65,7 @@ public class DetailActivity extends AppCompatActivity {
             } else {
                 EditTodoFragment editTodoFragment = (EditTodoFragment) getSupportFragmentManager().findFragmentByTag(EDITFRAG_TAG);
                 if (editTodoFragment.checkFields()) {
-                    Intent intent = new Intent(DetailActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
             }
         }

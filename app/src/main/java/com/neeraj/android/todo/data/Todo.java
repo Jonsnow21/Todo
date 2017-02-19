@@ -15,14 +15,16 @@ public class Todo extends RealmObject implements Parcelable {
     private String content;
     private String dueDate;
     private int priority;
+    private long createdTime;
 
     public Todo() {}
 
-    public Todo(String title, String content, String date, int priority) {
+    public Todo(String title, String content, String date, int priority, long createdTime) {
         this.title = title;
         this.content = content;
         this.dueDate = date;
         this.priority = priority;
+        this.createdTime = createdTime;
     }
 
     protected Todo(Parcel in) {
@@ -30,6 +32,7 @@ public class Todo extends RealmObject implements Parcelable {
         content = in.readString();
         dueDate = in.readString();
         priority = in.readInt();
+        createdTime = in.readLong();
     }
 
     public static final Creator<Todo> CREATOR = new Creator<Todo>() {
@@ -60,6 +63,10 @@ public class Todo extends RealmObject implements Parcelable {
         return priority;
     }
 
+    public long getCreatedTime() {
+        return createdTime;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -76,6 +83,10 @@ public class Todo extends RealmObject implements Parcelable {
         this.priority = priority;
     }
 
+    public void setCreatedTime(long createdTime) {
+        this.createdTime = createdTime;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -87,5 +98,6 @@ public class Todo extends RealmObject implements Parcelable {
         parcel.writeString(content);
         parcel.writeString(dueDate);
         parcel.writeInt(priority);
+        parcel.writeLong(createdTime);
     }
 }

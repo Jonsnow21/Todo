@@ -34,6 +34,7 @@ public class EditTodoFragment extends Fragment{
     Calendar calendar;
     private Todo mTodo;
     private Realm realm;
+    private long time;
 
     public EditTodoFragment() {
         // Required empty public constructor
@@ -74,11 +75,13 @@ public class EditTodoFragment extends Fragment{
 
         prioritySpinner.setAdapter(priorityAdapter);
 
+        calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        time = Long.MAX_VALUE - calendar.getTimeInMillis();
+
         if (mTodo != null) {
             populateView();
         } else {
-            calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
             date = datePicker.getDayOfMonth() + "-" + (datePicker.getMonth() + 1) + "-" + datePicker.getYear();
             populateDatePicker(calendar);
         }
@@ -128,7 +131,8 @@ public class EditTodoFragment extends Fragment{
             mTodo = new Todo(title.getText().toString(),
                     note.getText().toString(),
                     date,
-                    prioritySpinner.getSelectedItemPosition());
+                    prioritySpinner.getSelectedItemPosition(),
+                    time);
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
