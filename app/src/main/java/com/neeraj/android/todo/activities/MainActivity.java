@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
     private Realm realm;
     private List<Todo> todoList;
     private TodoAdapter todoAdapter;
-    private TodoItemTouchHelper todoItemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
