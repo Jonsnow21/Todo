@@ -53,6 +53,7 @@ public class DetailActivity extends AppCompatActivity {
         fab.setImageResource(R.drawable.ic_done_white_24dp);
         fragment = EditTodoFragment.newInstance(todo);
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top)
                 .replace(R.id.frame, fragment, EDITFRAG_TAG)
                 .commit();
     }
