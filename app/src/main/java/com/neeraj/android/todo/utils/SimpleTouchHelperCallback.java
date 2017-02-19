@@ -13,9 +13,9 @@ import com.neeraj.android.todo.adapters.TodoAdapter;
 public class SimpleTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private static final float ALPHA_FULL = 1.0f;
-    private TodoAdapter.TodoItemTouchHelper itemTouchHelper;
+    private TodoItemTouchHelper itemTouchHelper;
 
-    public SimpleTouchHelperCallback(TodoAdapter.TodoItemTouchHelper itemTouchHelper){
+    public SimpleTouchHelperCallback(TodoItemTouchHelper itemTouchHelper){
         this.itemTouchHelper = itemTouchHelper;
     }
 

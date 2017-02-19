@@ -1,13 +1,13 @@
 package com.neeraj.android.todo.activities;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,8 +15,9 @@ import com.neeraj.android.todo.R;
 import com.neeraj.android.todo.adapters.TodoAdapter;
 import com.neeraj.android.todo.data.Todo;
 import com.neeraj.android.todo.utils.ItemOffsetDecoration;
+import com.neeraj.android.todo.utils.SimpleTouchHelperCallback;
+import com.neeraj.android.todo.utils.TodoItemTouchHelper;
 
-import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
@@ -27,7 +28,7 @@ import static com.neeraj.android.todo.utils.Constants.PURPOSE;
 import static com.neeraj.android.todo.utils.Constants.TODO;
 import static com.neeraj.android.todo.utils.Constants.VIEW_TODO;
 
-public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoListener, TodoAdapter.TodoItemTouchHelper {
+public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoListener, TodoItemTouchHelper {
 
     private FloatingActionButton addTodo;
     private TextView noTodo;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
     private Realm realm;
     private List<Todo> todoList;
     private TodoAdapter todoAdapter;
+    private TodoItemTouchHelper todoItemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
         addTodo = (FloatingActionButton) findViewById(R.id.fab_add_todo);
         noTodo = (TextView) findViewById(R.id.no_todo);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(this, R.dimen.item_offset);
+        recyclerView.addItemDecoration(itemDecoration);
 
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
@@ -92,14 +97,15 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
     }
 
     private void setUpRecyclerView() {
-        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(this, R.dimen.item_offset);
-        recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setItemAnimator(new LandingAnimator());
         RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
         todoAdapter = new TodoAdapter(this, todoList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(todoAdapter);
+        ItemTouchHelper.Callback callback= new SimpleTouchHelperCallback(this);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -111,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
                 todo.deleteFromRealm();
             }
         });
-        todoList.remove(position);
+        todoList = realm.where(Todo.class).findAllSorted("createdTime");
         todoAdapter.notifyItemRemoved(position);
         todoDeleted(todoList);
     }

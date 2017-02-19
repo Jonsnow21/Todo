@@ -83,10 +83,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         }
     }
 
-    public interface TodoItemTouchHelper {
-        void onDismiss(int position);
-    }
-
     public interface TodoListener {
 
         void openTodo(Todo todo, int position);
