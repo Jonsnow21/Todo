@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Todo</string>
+    <string name="no_todo">You haven\'t added any Todo \n <b>Click the + button to add a new Todo</b></string>
 </resources>
