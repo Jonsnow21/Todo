@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.TodoL
         if (todoAdapter != null) {
             todoAdapter.notifyDataSetChanged();
         }
+        checkIfNoTodo();
     }
 
     @Override
