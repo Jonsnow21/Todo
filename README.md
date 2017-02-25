@@ -18,7 +18,7 @@ The following **optional** features are implemented:
 
 * [ ] Persist the todo items [into SQLite](http://guides.codepath.com/android/Persisting-Data-to-the-Device#sqlite) instead of a text file
 * [x] Improve style of the todo items in the list [using a custom adapter](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
-* [ ] Add support for completion due dates for todo items (and display within listview item)
+* [x] Add support for completion due dates for todo items (and display within listview item)
 * [ ] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) instead of new Activity for editing items
 * [x] Add support for selecting the priority of each todo item (and display in listview item)
 * [x] Tweak the style improving the UI / UX, play with colors, images or backgrounds
@@ -27,6 +27,15 @@ The following **additional** features are implemented:
 
 * [x] Allow user to easily mark a note as complete implementing swipe to dismiss
 * [x] Follow material design guidelines and use material componenets in the app wherever possible
+* [x] Persist the todo items [into Realm](https://realm.io/docs/java/latest/#getting-started) instead of a text file
+
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://github.com/Jonsnow21/Todo/blob/master/user_story.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 
 ## License
